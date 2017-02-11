@@ -13,11 +13,22 @@ class Game {
             .innerHTML = state.title;
     }
 
+    renderGrid(state) {
+        const { grid } = state;
+        const boxes = this.ui
+                          .querySelectorAll('td');
+        boxes.forEach((box, index) => {
+            const value = grid[Math.floor(index/3)][index % 3];
+            box.innerHTML = value;
+        });
+    }
+
     update() {
         /* eslint-disable */
         const state = this.store.getState();
         console.log(state);
         this.renderTitle(state);
+        this.renderGrid(state);
     }
 
     render() {

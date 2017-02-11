@@ -2,10 +2,10 @@ body {
     background-color: #f6d68f;
     text-align: center;
     font-family: verdana;
+    color: #ffffff;
 }
 
 .title {
-    color: #ffffff;
     width: 100%;
 }
 
@@ -33,10 +33,10 @@ tbody {
 
 tr, td {
     border: 1px solid #f1a90d;
+    font-size: 60px;
 }
 
 #reset {
-    color: #ffffff;
     background-color: #00c0ff;
     padding: 10px;
     font-size: 25px;

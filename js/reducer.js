@@ -1,6 +1,7 @@
 import {
     RESET_GAME,
-    SET_TITLE
+    SET_TITLE,
+    SET_GRID
 } from './actions';
 
 const initialState = {
@@ -23,6 +24,10 @@ const reducer = (state=initialState, action) => {
     case SET_TITLE:
         return Object.assign({}, state, {
             title: action.title
+        });
+    case SET_GRID:
+        return Object.assign({}, state, {
+            grid: action.grid
         });
     default:
         return state;
