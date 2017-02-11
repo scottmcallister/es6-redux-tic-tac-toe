@@ -1,12 +1,12 @@
 body {
     background-color: #f6d68f;
+    text-align: center;
+    font-family: verdana;
 }
 
 .title {
     color: #ffffff;
     width: 100%;
-    text-align: center;
-    font-family: verdana;
 }
 
 .wrapper {
@@ -33,4 +33,18 @@ tbody {
 
 tr, td {
     border: 1px solid #f1a90d;
+}
+
+#reset {
+    color: #ffffff;
+    background-color: #00c0ff;
+    padding: 10px;
+    font-size: 25px;
+    border: 2px solid #ffffff;
+    border-radius: 3px;
+    margin-top: 30px;
+}
+
+#reset:hover {
+    background-color: #529db5;
 }

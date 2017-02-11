@@ -7,9 +7,17 @@ class Game {
         this.store.subscribe(this.update.bind(this));
     }
 
+    renderTitle(state) {
+        this.ui
+            .querySelector('.title')
+            .innerHTML = state.title;
+    }
+
     update() {
         /* eslint-disable */
-        console.log(this.store.getState());
+        const state = this.store.getState();
+        console.log(state);
+        this.renderTitle(state);
     }
 
     render() {
