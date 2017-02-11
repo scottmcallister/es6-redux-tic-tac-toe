@@ -2,7 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    entry: './app/index.js',
+    entry: './js/index.js',
     output: {
         filename: './dist/bundle.js'
     },
@@ -10,7 +10,7 @@ module.exports = {
         loaders: [
             {
                 loader: 'babel-loader',  /* eslint-disable */
-                test: path.join(__dirname, 'app'), /* eslint-enable */
+                test: path.join(__dirname, 'js'), /* eslint-enable */
                 query: {
                     presets: 'es2015'
                 }
@@ -19,7 +19,7 @@ module.exports = {
     },
     plugins: [
         // Avoid publishing files when compilation fails
-        new webpack.NoErrorsPlugin()
+        new webpack.NoEmitOnErrorsPlugin()
     ],
     stats: {
         // Nice colored output
