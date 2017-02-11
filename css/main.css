@@ -37,6 +37,7 @@ tr, td {
 }
 
 #reset {
+    color: #ffffff;
     background-color: #00c0ff;
     padding: 10px;
     font-size: 25px;
@@ -46,5 +47,5 @@ tr, td {
 }
 
 #reset:hover {
-    background-color: #529db5;
+    background-color: #06a0d2;
 }

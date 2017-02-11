@@ -1,10 +1,15 @@
-// import * as actions from './actions';
+import * as actions from './actions';
 
 class Game {
     constructor(options) {
         this.ui = options.ui;
         this.store = options.store;
         this.store.subscribe(this.update.bind(this));
+        this.ui
+            .querySelector('#reset')
+            .addEventListener('click',
+                this.resetGame.bind(this)
+            );
     }
 
     renderTitle(state) {
@@ -21,6 +26,10 @@ class Game {
             const value = grid[Math.floor(index/3)][index % 3];
             box.innerHTML = value;
         });
+    }
+
+    resetGame() {
+        this.store.dispatch(actions.resetGame());
     }
 
     update() {
