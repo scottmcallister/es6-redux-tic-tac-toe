@@ -4,17 +4,16 @@ var webpack = require('webpack');
 module.exports = {
     entry: './app/index.js',
     output: {
-        path: './dist',
-        filename: 'bundle.js'
+        filename: './dist/bundle.js'
     },
     module: {
         loaders: [
             {
-                loader: 'babel-loader',
-                test: path.join(__dirname, 'app'),
+                loader: 'babel-loader',  /* eslint-disable */
+                test: path.join(__dirname, 'app'), /* eslint-enable */
                 query: {
-                  presets: 'es2015',
-                },
+                    presets: 'es2015'
+                }
             }
         ]
     },
@@ -27,5 +26,5 @@ module.exports = {
         colors: true
     },
     // Create Sourcemaps for the bundle
-    devtool: 'source-map',
+    devtool: 'source-map'
 };
