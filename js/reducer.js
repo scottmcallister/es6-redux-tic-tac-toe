@@ -1,7 +1,8 @@
 import {
     RESET_GAME,
     SET_TITLE,
-    SET_GRID
+    SET_GRID,
+    MAKE_MOVE
 } from './actions';
 
 const initialState = {
@@ -29,6 +30,18 @@ const reducer = (state=initialState, action) => {
         return Object.assign({}, state, {
             grid: action.grid
         });
+    case MAKE_MOVE: {
+        const box = state.grid[action.xIndex][action.yIndex];
+        const nextTurnIsX = (state.xTurn && box !== '')
+            || (!state.xTurn && box === '');
+        let newGrid = state.grid;
+        newGrid[action.xIndex][action.yIndex] = box === '' ?
+            action.player : box;
+        return Object.assign({}, state, {
+            xTurn: nextTurnIsX,
+            grid: newGrid
+        });
+    }
     default:
         return state;
     }

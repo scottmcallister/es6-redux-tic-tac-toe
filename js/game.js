@@ -21,7 +21,7 @@ class Game {
     renderGrid(state) {
         const { grid } = state;
         const boxes = this.ui
-                          .querySelectorAll('td');
+                          .querySelectorAll('td button');
         boxes.forEach((box, index) => {
             const value = grid[Math.floor(index/3)][index % 3];
             box.innerHTML = value;

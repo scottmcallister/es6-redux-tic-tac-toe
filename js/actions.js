@@ -1,6 +1,7 @@
 export const RESET_GAME = 'RESET_GAME';
 export const SET_TITLE = 'SET_TITLE';
 export const SET_GRID = 'SET_GRID';
+export const MAKE_MOVE = 'MAKE_MOVE';
 
 /**
  * resetGame - load the initial game state
@@ -30,5 +31,21 @@ export const setGrid = (newGrid) => {
     return {
         type: SET_GRID,
         title: newGrid
+    };
+};
+
+/**
+ * move - performs a move on behalf of the current player
+ * @param  {Number} xIndex - grid index on x axis
+ * @param  {Number} yIndex - grid index on y axis
+ * @param  {String} player - player letter ('X' or 'O')
+ * @return {Object}
+ */
+export const move = (xIndex, yIndex, player) => {
+    return {
+        type: MAKE_MOVE,
+        xIndex,
+        yIndex,
+        player
     };
 };
