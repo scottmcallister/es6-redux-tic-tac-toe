@@ -2,6 +2,7 @@ export const RESET_GAME = 'RESET_GAME';
 export const SET_TITLE = 'SET_TITLE';
 export const SET_GRID = 'SET_GRID';
 export const MAKE_MOVE = 'MAKE_MOVE';
+export const END_GAME = 'END_GAME';
 
 /**
  * resetGame - load the initial game state
@@ -47,5 +48,12 @@ export const move = (xIndex, yIndex, player) => {
         xIndex,
         yIndex,
         player
+    };
+};
+
+export const endGame = (winner) => {
+    return {
+        type: END_GAME,
+        winner
     };
 };

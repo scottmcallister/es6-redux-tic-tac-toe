@@ -1,6 +1,6 @@
 import * as actions from './actions';
 
-// all possible 3 in a row coordinates for each box in grid
+// all possible winning coordinates for each box in the grid
 const winConditions = [
     [
         [[0,0],[0,1],[0,2]],
@@ -85,6 +85,14 @@ class Game {
                 this.ui.grid[wc[2][0]][wc[2][1]] === player;
         });
         return gameOver;
+    }
+
+    makeMove(row, col, player) {
+        if(this.store.getState().gameOver) { return; }
+        this.store.dispatch(actions.makeMove(row, col, player));
+        if(this.isWinner(row, col, player)) {
+            this.store.dispatch(actions.endGame(player));
+        }
     }
 
     resetGame() {

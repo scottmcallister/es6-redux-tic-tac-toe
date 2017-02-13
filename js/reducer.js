@@ -2,7 +2,8 @@ import {
     RESET_GAME,
     SET_TITLE,
     SET_GRID,
-    MAKE_MOVE
+    MAKE_MOVE,
+    END_GAME
 } from './actions';
 
 const initialState = {
@@ -42,6 +43,11 @@ const reducer = (state=initialState, action) => {
             grid: newGrid
         });
     }
+    case END_GAME:
+        return Object.assign({}, state, {
+            winner: action.winner,
+            gameOver: true
+        });
     default:
         return state;
     }
