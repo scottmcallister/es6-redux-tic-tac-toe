@@ -31,9 +31,9 @@ const winConditions = [
         [[1,0],[1,1],[1,2]]
     ],
     [
-        [[0,0],[0,1],[0,2]],
+        [[2,2],[2,1],[2,0]],
         [[0,2],[1,1],[2,0]],
-        [[0,2],[1,2],[2,2]]
+        [[0,0],[1,0],[2,0]]
     ],
     [
         [[0,1],[1,1],[2,1]],
@@ -84,13 +84,16 @@ class Game {
     isWinner(row, col, player) {
         const state = this.store.getState();
         let gameOver = false;
-        const boxIndex = Math.floor(row/3) + (col % 3);
+        const boxIndex = row * 3 + col;
         winConditions[boxIndex].map((wc) => {
+
             // check if win condition coordinates match player
-            gameOver =
-                state.grid[wc[0][0]][wc[0][1]] === player &&
+            if (state.grid[wc[0][0]][wc[0][1]] === player &&
                 state.grid[wc[1][0]][wc[1][1]] === player &&
-                state.grid[wc[2][0]][wc[2][1]] === player;
+                state.grid[wc[2][0]][wc[2][1]] === player) {
+                gameOver = true;
+            }
+
         });
         return gameOver;
     }

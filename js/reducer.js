@@ -15,14 +15,23 @@ const initialState = {
     ],
     gameOver: false,
     winner: '',
-    title: 'Test'
+    title: 'O Turn'
 };
 
 // reducer
 const reducer = (state=initialState, action) => {
     switch(action.type) {
     case RESET_GAME:
-        return initialState;
+        return Object.assign({}, state, {
+            grid: [
+                ['','',''],
+                ['','',''],
+                ['','','']
+            ],
+            gameOver: false,
+            winner: '',
+            title: `${state.xTurn ? 'X' : 'O'} Turn`
+        });
     case SET_TITLE:
         return Object.assign({}, state, {
             title: action.title
@@ -40,13 +49,15 @@ const reducer = (state=initialState, action) => {
             action.player : box;
         return Object.assign({}, state, {
             xTurn: nextTurnIsX,
-            grid: newGrid
+            grid: newGrid,
+            title: `${nextTurnIsX ? 'X' : 'O'} Turn`
         });
     }
     case END_GAME:
         return Object.assign({}, state, {
             winner: action.winner,
-            gameOver: true
+            gameOver: true,
+            title: `Player ${action.winner} Wins!`
         });
     default:
         return state;
