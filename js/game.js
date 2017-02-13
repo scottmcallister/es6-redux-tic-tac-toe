@@ -56,6 +56,14 @@ class Game {
             .addEventListener('click',
                 this.resetGame.bind(this)
             );
+        const boxes = this.ui.querySelectorAll('td button');
+        boxes.forEach((box, index) => {
+            const row = Math.floor(index/3);
+            const col = index % 3;
+            box.addEventListener('click',
+                this.makeMove.bind(this, row, col)
+            );
+        });
     }
 
     renderTitle(state) {
@@ -66,8 +74,7 @@ class Game {
 
     renderGrid(state) {
         const { grid } = state;
-        const boxes = this.ui
-                          .querySelectorAll('td button');
+        const boxes = this.ui.querySelectorAll('td button');
         boxes.forEach((box, index) => {
             const value = grid[Math.floor(index/3)][index % 3];
             box.innerHTML = value;
@@ -75,21 +82,23 @@ class Game {
     }
 
     isWinner(row, col, player) {
+        const state = this.store.getState();
         let gameOver = false;
         const boxIndex = Math.floor(row/3) + (col % 3);
         winConditions[boxIndex].map((wc) => {
             // check if win condition coordinates match player
             gameOver =
-                this.ui.grid[wc[0][0]][wc[0][1]] === player &&
-                this.ui.grid[wc[1][0]][wc[1][1]] === player &&
-                this.ui.grid[wc[2][0]][wc[2][1]] === player;
+                state.grid[wc[0][0]][wc[0][1]] === player &&
+                state.grid[wc[1][0]][wc[1][1]] === player &&
+                state.grid[wc[2][0]][wc[2][1]] === player;
         });
         return gameOver;
     }
 
-    makeMove(row, col, player) {
+    makeMove(row, col) {
+        const player = this.store.getState().xTurn ? 'X' : 'O';
         if(this.store.getState().gameOver) { return; }
-        this.store.dispatch(actions.makeMove(row, col, player));
+        this.store.dispatch(actions.move(row, col, player));
         if(this.isWinner(row, col, player)) {
             this.store.dispatch(actions.endGame(player));
         }
