@@ -42,11 +42,11 @@ export const setGrid = (newGrid) => {
  * @param  {String} player - player letter ('X' or 'O')
  * @return {Object}
  */
-export const move = (xIndex, yIndex, player) => {
+export const move = (row, col, player) => {
     return {
         type: MAKE_MOVE,
-        xIndex,
-        yIndex,
+        row,
+        col,
         player
     };
 };

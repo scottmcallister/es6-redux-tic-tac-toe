@@ -41,11 +41,11 @@ const reducer = (state=initialState, action) => {
             grid: action.grid
         });
     case MAKE_MOVE: {
-        const box = state.grid[action.xIndex][action.yIndex];
+        const box = state.grid[action.row][action.col];
         const nextTurnIsX = (state.xTurn && box !== '')
             || (!state.xTurn && box === '');
         let newGrid = state.grid;
-        newGrid[action.xIndex][action.yIndex] = box === '' ?
+        newGrid[action.row][action.col] = box === '' ?
             action.player : box;
         return Object.assign({}, state, {
             xTurn: nextTurnIsX,
