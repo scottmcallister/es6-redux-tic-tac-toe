@@ -53,12 +53,15 @@ const reducer = (state=initialState, action) => {
             title: `${nextTurnIsX ? 'X' : 'O'} Turn`
         });
     }
-    case END_GAME:
+    case END_GAME: {
+        const newTitle = action.winner === 'tie' ?
+            'Tie Game!' : `Player ${action.winner} Wins!`;
         return Object.assign({}, state, {
             winner: action.winner,
             gameOver: true,
-            title: `Player ${action.winner} Wins!`
+            title: newTitle
         });
+    }
     default:
         return state;
     }

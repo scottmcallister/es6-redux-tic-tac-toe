@@ -98,12 +98,27 @@ class Game {
         return gameOver;
     }
 
+    isTie() {
+        const state = this.store.getState();
+        let result = true;
+        state.grid.forEach((row) => {
+            row.forEach((column) => {
+                if(column === '') {
+                    result = false;
+                }
+            });
+        });
+        return result;
+    }
+
     makeMove(row, col) {
         const player = this.store.getState().xTurn ? 'X' : 'O';
         if(this.store.getState().gameOver) { return; }
         this.store.dispatch(actions.move(row, col, player));
         if(this.isWinner(row, col, player)) {
             this.store.dispatch(actions.endGame(player));
+        } else if(this.isTie()) {
+            this.store.dispatch(actions.endGame('tie'));
         }
     }
 
