@@ -129,7 +129,6 @@ class Game {
     update() {
         /* eslint-disable */
         const state = this.store.getState();
-        console.log(state);
         this.renderTitle(state);
         this.renderGrid(state);
     }
