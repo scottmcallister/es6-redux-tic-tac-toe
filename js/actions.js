@@ -40,7 +40,6 @@ export const setGrid = (newGrid) => {
  * @param  {Number} xIndex - grid index on x axis
  * @param  {Number} yIndex - grid index on y axis
  * @param  {String} player - player letter ('X' or 'O')
- * @return {Object}
  */
 export const move = (row, col, player) => {
     return {
@@ -51,6 +50,10 @@ export const move = (row, col, player) => {
     };
 };
 
+/**
+ * endGame
+ * @param  {String} winner - String for the winning player (or a tie)
+ */
 export const endGame = (winner) => {
     return {
         type: END_GAME,
